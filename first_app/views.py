@@ -9,6 +9,9 @@ from django.views.decorators.csrf import csrf_exempt
 from . import forms
 
 
+def welcome(request):
+    return render(request, 'first_app/index.html', {})
+
 
 #
 # def index(request):
@@ -107,8 +110,12 @@ def user_view(request):
         form = forms.UserForm(request.POST)
         if form.is_valid():
             form.save(commit=True)
-            return welcome(request)
+            return Http404
     else:
         print("Error, form is invalid")
 
     return render(request, 'first_app/form_page.html', context={'form': form})
+
+
+def relative_path_view(request):
+    return render(request, 'first_app/relative_path.html')
