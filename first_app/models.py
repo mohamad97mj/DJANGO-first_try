@@ -31,3 +31,8 @@ class Token(models.Model):
     def __str__(self):
         return "{}-token".format(self.user)
 
+
+class NewUser(models.Model):
+    first_name = models.CharField(max_length=20)
+    last_name = models.CharField(max_length=20)
+    email_address = models.EmailField()

@@ -87,15 +87,30 @@ def welcome(request):
 #     return JsonResponse({'age': age}, JSONEncoder)
 
 
-def form_view(request):
-    form = forms.MyForm()
+# def form_view(request):
+#     form = forms.MyForm()
+#     if request.method == 'POST':
+#         form = forms.MyForm(request.POST)
+#         if form.is_valid():
+#             # print(request.POST)
+#             print("validation success")
+#             print("Name :" + form.cleaned_data['name'])
+#             print("Email :" + form.cleaned_data['email'])
+#             print("Text :" + form.cleaned_data['text'])
+#
+#     return render(request, 'first_app/form_page.html', context={'form': form})
+
+
+def user_view(request):
+
+    form = forms.UserForm()
+
     if request.method == 'POST':
-        form = forms.MyForm(request.POST)
+        form = forms.UserForm(request.POST)
         if form.is_valid():
-            print(request.POST)
-            # print("validation success")
-            # print("Name :" + form.cleaned_data['name'])
-            # print("Email :" + form.cleaned_data['email'])
-            # print("Text :" + form.cleaned_data['text'])
+            form.save(commit=True)
+            return welcome(request)
+    else:
+        print("Error, form is invalid")
 
     return render(request, 'first_app/form_page.html', context={'form': form})
