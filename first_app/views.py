@@ -9,8 +9,6 @@ from django.views.decorators.csrf import csrf_exempt
 from . import forms
 
 
-def welcome(request):
-    return render(request, 'first_app/index.html', {})
 
 #
 # def index(request):
